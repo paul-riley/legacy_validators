@@ -1,27 +1,22 @@
 # frozen_string_literal: true
 
 Puppet::Functions.create_function(:is_array) do
-  dispatch :validate do
-    repeated_param 'Any', :args
+  # @summary
+  #   Returns true if the given value is an Array, false otherwise.
+  #
+  # @example Using is_array
+  #   is_array([])            # => true
+  #   is_array(['a', 'b'])    # => true
+  #   is_array('not array')   # => false
+  #
+  # @param value The value to check.
+  #
+  # @return [Boolean] true if value is an Array, false otherwise.
+  dispatch :is_array do
+    param 'Any', :value
   end
 
-  def validate(*args)
-    raise Puppet::Error, 'validate_array(): wrong number of arguments (0; must be > 0)' if args.empty?
-
-    msg = nil
-    if args.length > 1 && args[-1].is_a?(String)
-      msg = args.pop
-    end
-
-    t = Puppet::Pops::Types::TypeParser.singleton.parse('Array')
-
-    args.each do |arg|
-      if msg
-        call_function('assert_type', t, arg) { |_expected, _actual| raise Puppet::Error, msg }
-      else
-        call_function('assert_type', t, arg)
-      end
-    end
-    nil
+  def is_array(value)
+    value.is_a?(Array)
   end
 end
