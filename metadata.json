@@ -1,6 +1,6 @@
 {
   "name": "priley-stdlib_legacy_functions",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Paul Riley",
   "summary": "Legacy Functions from previous Puppet version for Stdlib 9.1 and newer",
   "license": "Apache-2.0",
