@@ -4,7 +4,7 @@ require 'puppet/util/execution'
 require 'tempfile'
 
 Puppet::Functions.create_function(:validate_cmd) do
-  # Matches: validate_cmd($string, $command_with_percent_placeholder, Optional[$message])
+  # validate_cmd($value, $command_with_percent_placeholder, Optional[$message])
   # Example: validate_cmd($content, '/usr/sbin/visudo -c -f %')
   dispatch :validate do
     param 'String', :value
@@ -13,15 +13,16 @@ Puppet::Functions.create_function(:validate_cmd) do
   end
 
   def validate(value, command, message = nil)
-    Puppet.deprecation_warning('validate_cmd is deprecated; consider using file { validate_cmd => ... } or native types.')
-
-    # Write the string to a tempfile and substitute % with the path (legacy behavior)
     tf = Tempfile.new('puppet-validate-cmd')
     begin
       tf.write(value)
       tf.flush
 
-      cmdline = command.include?('%') ? command.gsub('%', tf.path) : "#{command} #{tf.path}"
+      cmdline = if command.include?('%')
+                  command.gsub('%', tf.path)
+                else
+                  "#{command} #{tf.path}"
+                end
 
       result = Puppet::Util::Execution.execute(
         cmdline,
@@ -35,7 +36,6 @@ Puppet::Functions.create_function(:validate_cmd) do
     ensure
       tf.close!
     end
-
     nil
   end
 end

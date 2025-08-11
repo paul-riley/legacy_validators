@@ -2,11 +2,14 @@
   "name": "priley-legacy_validators",
   "version": "0.1.0",
   "author": "Paul Riley",
-  "summary": "",
+  "summary": "Legacy Validators Implementation for Stdlib 9.1 and newer",
   "license": "Apache-2.0",
   "source": "",
   "dependencies": [
-
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 9.1.0"
+    }
   ],
   "operatingsystem_support": [
     {
