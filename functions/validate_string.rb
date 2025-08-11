@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Puppet::Functions.create_function(:validate_string) do
   dispatch :validate do
     repeated_param 'Any', :args
@@ -9,7 +10,7 @@ Puppet::Functions.create_function(:validate_string) do
     raise Puppet::Error, 'validate_string(): wrong number of arguments (0; must be > 0)' if args.empty?
 
     # Optional trailing custom message (legacy pattern)
-    msg = args.length > 1 && args[-1].is_a?(String) ? args.pop : nil
+    msg = (args.length > 1 && args[-1].is_a?(String)) ? args.pop : nil
 
     t1 = Puppet::Pops::Types::TypeParser.singleton.parse('String')
     ta = Puppet::Pops::Types::TypeParser.singleton.parse('Array[String]')

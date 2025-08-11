@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Puppet::Functions.create_function(:validate_re) do
   # Matches: validate_re($string, $pattern_or_patterns, Optional[$message])
   dispatch :validate do

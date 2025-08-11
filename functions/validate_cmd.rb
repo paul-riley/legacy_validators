@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'puppet/util/execution'
 require 'tempfile'
 
@@ -25,7 +26,7 @@ Puppet::Functions.create_function(:validate_cmd) do
       result = Puppet::Util::Execution.execute(
         cmdline,
         failonfail: false,
-        combine: true
+        combine: true,
       )
 
       unless result.exitstatus == 0

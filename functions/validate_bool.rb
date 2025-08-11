@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Puppet::Functions.create_function(:validate_bool) do
   dispatch :validate do
     repeated_param 'Any', :args
@@ -8,7 +9,7 @@ Puppet::Functions.create_function(:validate_bool) do
     Puppet.deprecation_warning('validate_bool is deprecated; use Boolean typing or assert_type(Boolean, $x).')
     raise Puppet::Error, 'validate_bool(): wrong number of arguments (0; must be > 0)' if args.empty?
 
-    msg = args.length > 1 && args[-1].is_a?(String) ? args.pop : nil
+    msg = (args.length > 1 && args[-1].is_a?(String)) ? args.pop : nil
     t1 = Puppet::Pops::Types::TypeParser.singleton.parse('Boolean')
     ta = Puppet::Pops::Types::TypeParser.singleton.parse('Array[Boolean]')
 
