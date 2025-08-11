@@ -13,7 +13,7 @@ Installs functions available to other roles, profiles, and modules that existed 
 
 ### Requirements for stdlib_legacy_functions
 
-(puppetlabs-stdlib)[https://forge.puppet.com/modules/puppetlabs/stdlib/readme] 9.1.0 or newer.
+[puppetlabs-stdlib](https://forge.puppet.com/modules/puppetlabs/stdlib/readme) 9.1.0 or newer.
 
 
 ### Beginning with stdlib_legacy_functions
@@ -26,5 +26,5 @@ This is similar to:
 
 ## Development
 
-This module is open source and available at (Github)[https://github.com/paul-riley/stdlib_legacy_functions]. Please fork, contribute, or open an issue if additional bugs or compatibility are required.
+This module is open source and available at [Github](https://github.com/paul-riley/stdlib_legacy_functions). Please fork, contribute, or open an issue if additional bugs or compatibility are required.
 
